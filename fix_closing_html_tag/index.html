@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    // make a function that takes an html string that adds a / to the second div that missing a closing tag
+
+    function fixHtml(html) {
+      let fixedHtml = '';
+      let div = '';
+      let divCounter = 0;
+      
+      for(let i = 0; i < html.length; i++) {
+        if (html[i] === '<') {
+           if (html[i+1] === 'd' && html[i+2] === 'i' && html[i+3] === 'v' && html[i+4] === '>') {
+             divCounter++;
+             div = 'div>'
+           }
+        }
+        if (divCounter % 2 === 0 && div === 'div>') {
+          fixedHtml += html[i] + '/';
+        }
+        else {
+          fixedHtml += html[i];
+        }
+        div = '';
+          
+      }
+        return fixedHtml;
+    }
+    console.log(fixHtml('<div>hello<div><div><p>hi</p><div>'))
+
+
+  </script>
+</body>
+</html>
